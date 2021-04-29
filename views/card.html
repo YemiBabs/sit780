@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card Details</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+
+    <script src="https://js.stripe.com/v3/"></script>
+      <script>
+        window.onload = (event) => {
+
+
+            const stripe = Stripe('pk_test_853qy8se4d90x2LxszV5GAi700pL7qNzqY');
+
+            const elements = stripe.elements();
+            const card = elements.create('card');
+            card.mount('#card-element');
+
+// Handle real-time validation errors from the card Element.
+            card.on('change', function(event) {
+                const displayError = document.getElementById('card-errors');
+                if (event.error) {
+                    displayError.textContent = event.error.message;
+                } else {
+                    displayError.textContent = '';
+                }
+            });
+
+            const cardholderName = document.getElementById('cardholder-name');
+            const cardButton = document.getElementById('card-button');
+            const clientSecret = cardButton.dataset.secret;
+
+// Upon button clicking, complete the payment:
+            cardButton.addEventListener('click', async (event) => {
+                event.preventDefault();
+                try {
+                    const result = await stripe.confirmCardPayment(clientSecret, {
+                        payment_method: {
+                            card: card,
+                            billing_details: {name: cardholderName.value},
+                        }
+                    });
+                    if (result.error) {
+                        document.getElementById('card-errors').textContent = result.error.message;
+                        return false;
+                    } else {
+                        document.getElementById('card').submit();
+                    }
+                } catch(err) {
+                    document.getElementById('card-errors').textContent = err.message;
+                    return false;
+                }
+            });
+
+        };
+    </script>
+
+</head>
+<body>
+<h1>Complete your donation</h1>
+<p>Thank you, {{name}}, for your generosity! Please enter your payment details below to complete your donation.</p>
+<form method="POST" action="/donate/thanks" id="card">
+    <div>
+        <label for="cardholder-name">Cardholder name: </label>
+        <input id="cardholder-name" type="text" name="cardholder-name" value="{{name}}">
+    </div>
+    <div>
+        <label for="card-element" style="text-align: left" length="200">Credit or debit card:</label>
+        <div id="card-element" length="200"></div>
+    </div>
+    <div id="card-errors"></div>
+    <div>
+        <button id="card-button" data-secret="{{intentSecret}}">Donate ${{amount}}</button>
+    </div>
+
+
+</form>
+</body>
+</html>

@@ -1,0 +1,5 @@
+---
+applications:
+ - name: COVID19_062020
+   random-route: true
+   memory: 128M

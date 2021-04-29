@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Donation</title>
+    <meta name="description" content="website description" />
+    <meta name="keywords" content="website keywords, website keywords" />
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+    <script src="https://js.stripe.com/v3"></script>
+</head>
+
+
+<body class="pbody">
+<div id="main2">
+    <div id="header2">
+        <div id="logo">
+            <div id="logo_text">
+                <!-- class="logo_colour", allows you to change the colour of the text -->
+                <h1><a href="index.html">COVID<span class="logo_colour">-19</span></a></h1>
+                <h2>RESTORATION</h2>
+            </div>
+        </div>
+     </div>
+</div>
+
+
+<div>
+    <div><p> </p></div>
+    <div><p> </p></div>
+    <div><p> </p></div>
+    <p><h2> Donation </h2> </p>
+</div>
+<div class="rTable">
+    <div class="rTableRow">
+        <div class="rTableHead2"><strong>One-time Donation</strong></div>
+        <div class="rTableHead2"><span style="font-weight: bold;">Recurrent Donation</span></div>
+    </div>
+    <div class="rTableRow">
+        <div class="rTableCell2">
+            <!--  $5.00 button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+            <button
+                    style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+                    id="checkout-button-price_1GtQE4ECm5TjDc1IKn99R8M7"
+                    role="link"
+            >
+                Donate $5.00 once
+            </button>
+
+            <div id="error-message"></div>
+
+            <script>
+                (function() {
+                    var stripe = Stripe('pk_test_853qy8se4d90x2LxszV5GAi700pL7qNzqY');
+
+                    var checkoutButton = document.getElementById('checkout-button-price_1GtQE4ECm5TjDc1IKn99R8M7');
+                    checkoutButton.addEventListener('click', function () {
+                        // When the customer clicks on the button, redirect
+                        // them to Checkout.
+                        stripe.redirectToCheckout({
+                            lineItems: [{price: 'price_1GtQE4ECm5TjDc1IKn99R8M7', quantity: 1}],
+                            mode: 'payment',
+                            // Do not rely on the redirect to the successUrl for fulfilling
+                            // purchases, customers may not always reach the success_url after
+                            // a successful payment.
+                            // Instead use one of the strategies described in
+                            // https://stripe.com/docs/payments/checkout/fulfillment
+                            successUrl: 'http://localhost:3000/success.html',
+                            cancelUrl: 'http://localhost:3000/canceled.html',
+                        })
+                            .then(function (result) {
+                                if (result.error) {
+                                    // If `redirectToCheckout` fails due to a browser or network
+                                    // error, display the localized error message to your customer.
+                                    var displayError = document.getElementById('error-message');
+                                    displayError.textContent = result.error.message;
+                                }
+                            });
+                    });
+                })();
+            </script>
+
+            <div>
+                </br>
+            </div>
+
+            <!-- $10.00 button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+            <button
+                    style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+                    id="checkout-button-price_1GtQEmECm5TjDc1I9oCyqzyd"
+                    role="link"
+            >
+                Donate $10.00 once
+            </button>
+
+            <div id="error-message"></div>
+
+            <script>
+                (function() {
+                    var stripe = Stripe('pk_test_853qy8se4d90x2LxszV5GAi700pL7qNzqY');
+
+                    var checkoutButton = document.getElementById('checkout-button-price_1GtQEmECm5TjDc1I9oCyqzyd');
+                    checkoutButton.addEventListener('click', function () {
+                        // When the customer clicks on the button, redirect
+                        // them to Checkout.
+                        stripe.redirectToCheckout({
+                            lineItems: [{price: 'price_1GtQEmECm5TjDc1I9oCyqzyd', quantity: 1}],
+                            mode: 'payment',
+                            // Do not rely on the redirect to the successUrl for fulfilling
+                            // purchases, customers may not always reach the success_url after
+                            // a successful payment.
+                            // Instead use one of the strategies described in
+                            // https://stripe.com/docs/payments/checkout/fulfillment
+                            successUrl: 'https://covid1912062020.us-south.cf.appdomain.cloud/success.html',
+                            cancelUrl: 'https://covid1912062020.us-south.cf.appdomain.cloud/canceled.html',
+                        })
+                            .then(function (result) {
+                                if (result.error) {
+                                    // If `redirectToCheckout` fails due to a browser or network
+                                    // error, display the localized error message to your customer.
+                                    var displayError = document.getElementById('error-message');
+                                    displayError.textContent = result.error.message;
+                                }
+                            });
+                    });
+                })();
+            </script>
+
+            <div>
+                </br>
+            </div>
+
+            <!-- $50 button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+            <button
+                    style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+                    id="checkout-button-price_1GtQG9ECm5TjDc1IDIvmyrhh"
+                    role="link"
+            >
+                Donate $50.00 once
+            </button>
+
+            <div id="error-message"></div>
+
+            <script>
+                (function() {
+                    var stripe = Stripe('pk_test_853qy8se4d90x2LxszV5GAi700pL7qNzqY');
+
+                    var checkoutButton = document.getElementById('checkout-button-price_1GtQG9ECm5TjDc1IDIvmyrhh');
+                    checkoutButton.addEventListener('click', function () {
+                        // When the customer clicks on the button, redirect
+                        // them to Checkout.
+                        stripe.redirectToCheckout({
+                            lineItems: [{price: 'price_1GtQG9ECm5TjDc1IDIvmyrhh', quantity: 1}],
+                            mode: 'payment',
+                            // Do not rely on the redirect to the successUrl for fulfilling
+                            // purchases, customers may not always reach the success_url after
+                            // a successful payment.
+                            // Instead use one of the strategies described in
+                            // https://stripe.com/docs/payments/checkout/fulfillment
+                            successUrl: 'https://covid1912062020.us-south.cf.appdomain.cloud/success.html',
+                            cancelUrl: 'https://covid1912062020.us-south.cf.appdomain.cloud/canceled.html',
+                        })
+                            .then(function (result) {
+                                if (result.error) {
+                                    // If `redirectToCheckout` fails due to a browser or network
+                                    // error, display the localized error message to your customer.
+                                    var displayError = document.getElementById('error-message');
+                                    displayError.textContent = result.error.message;
+                                }
+                            });
+                    });
+                })();
+            </script>
+
+
+
+
+        </div>
+
+
+
+        <div class="rTableCell2">
+
+
+            <!-- Monthly $20 button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+
+
+            <button
+                    style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+                    id="checkout-button-price_1GtQGvECm5TjDc1IFaRIJpCx"
+                    role="link"
+            >
+                Donate $20.00 monthly
+            </button>
+
+            <div id="error-message"></div>
+
+            <script>
+                (function() {
+                    var stripe = Stripe('pk_test_853qy8se4d90x2LxszV5GAi700pL7qNzqY');
+
+                    var checkoutButton = document.getElementById('checkout-button-price_1GtQGvECm5TjDc1IFaRIJpCx');
+                    checkoutButton.addEventListener('click', function () {
+                        // When the customer clicks on the button, redirect
+                        // them to Checkout.
+                        stripe.redirectToCheckout({
+                            lineItems: [{price: 'price_1GtQGvECm5TjDc1IFaRIJpCx', quantity: 1}],
+                            mode: 'subscription',
+                            // Do not rely on the redirect to the successUrl for fulfilling
+                            // purchases, customers may not always reach the success_url after
+                            // a successful payment.
+                            // Instead use one of the strategies described in
+                            // https://stripe.com/docs/payments/checkout/fulfillment
+                            successUrl: 'https://covid1912062020.us-south.cf.appdomain.cloud/success.html',
+                            cancelUrl: 'https://covid1912062020.us-south.cf.appdomain.cloud/canceled.html',
+                        })
+                            .then(function (result) {
+                                if (result.error) {
+                                    // If `redirectToCheckout` fails due to a browser or network
+                                    // error, display the localized error message to your customer.
+                                    var displayError = document.getElementById('error-message');
+                                    displayError.textContent = result.error.message;
+                                }
+                            });
+                    });
+                })();
+            </script>
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+<div>
+    </br>
+</div>
+
+<h2> Test Data </h2>
+<div class="rTable">
+    <div class="rTableRow">
+        <div class="rTableHead"><strong>NUMBER</strong></div>
+        <div class="rTableHead"><span style="font-weight: bold;">DESCRIPTION</span></div>
+    </div>
+    <div class="rTableRow">
+        <div class="rTableCell">4242424242424242</div>
+        <div class="rTableCell">Succeeds and immediately processes the payment.</div>
+
+    </div>
+    <div class="rTableRow">
+        <div class="rTableCell"> 4000000000003220 </div>
+        <div class="rTableCell">3D Secure 2 authentication must be completed for a successful payment. </div>
+    </div>
+    <div class="rTableRow">
+        <div class="rTableCell"> 4000000000009995 </div>
+        <div class="rTableCell">Always fails with a decline code of insufficient_funds. </div>
+    </div>
+</div>
+
+<p>
+</p>
+
+
+
+</body>
+</html>
