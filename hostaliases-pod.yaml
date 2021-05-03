@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hostaliases-pod
+spec:
+  restartPolicy: Never
+  hostAliases:
+  - ip: "10.1.2.3"
+    hostnames: 
+    - "mytest1.com"
+  - ip: "10.1.2.4"
+    hostnames: 
+    - "mytest2.com"    
+  containers:
+  - name: my-custom-covidapp
+    image: localhost:5000/covid19-system
+    ports:
+    - name: http
+      containerPort: 3003

@@ -1,0 +1,183 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    cni.projectcalico.org/podIP: 10.1.153.210/32
+    cni.projectcalico.org/podIPs: 10.1.153.210/32
+  creationTimestamp: "2021-04-29T11:48:53Z"
+  generateName: covid19-webapp-5d848f4c7d-
+  labels:
+    app: covid19-webapp
+    pod-template-hash: 5d848f4c7d
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:cni.projectcalico.org/podIP: {}
+          f:cni.projectcalico.org/podIPs: {}
+    manager: calico
+    operation: Update
+    time: "2021-04-29T11:48:53Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:generateName: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:pod-template-hash: {}
+        f:ownerReferences:
+          .: {}
+          k:{"uid":"6f7cc5df-e453-4394-9280-e562756f9366"}:
+            .: {}
+            f:apiVersion: {}
+            f:blockOwnerDeletion: {}
+            f:controller: {}
+            f:kind: {}
+            f:name: {}
+            f:uid: {}
+      f:spec:
+        f:containers:
+          k:{"name":"covid19-system"}:
+            .: {}
+            f:image: {}
+            f:imagePullPolicy: {}
+            f:name: {}
+            f:resources: {}
+            f:terminationMessagePath: {}
+            f:terminationMessagePolicy: {}
+        f:dnsPolicy: {}
+        f:enableServiceLinks: {}
+        f:restartPolicy: {}
+        f:schedulerName: {}
+        f:securityContext: {}
+        f:terminationGracePeriodSeconds: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-04-29T11:48:53Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:conditions:
+          k:{"type":"ContainersReady"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Initialized"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Ready"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+        f:containerStatuses: {}
+        f:hostIP: {}
+        f:phase: {}
+        f:podIP: {}
+        f:podIPs:
+          .: {}
+          k:{"ip":"10.1.153.210"}:
+            .: {}
+            f:ip: {}
+        f:startTime: {}
+    manager: kubelet
+    operation: Update
+    time: "2021-04-29T11:49:44Z"
+  name: covid19-webapp-5d848f4c7d-2z5dl
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: covid19-webapp-5d848f4c7d
+    uid: 6f7cc5df-e453-4394-9280-e562756f9366
+  resourceVersion: "18751"
+  selfLink: /api/v1/namespaces/default/pods/covid19-webapp-5d848f4c7d-2z5dl
+  uid: ef60cc83-ccb9-4797-80eb-e7ee07ead850
+spec:
+  containers:
+  - image: localhost:5000/covid19-system
+    imagePullPolicy: Always
+    name: covid19-system
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-bhtfk
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: yemi-virtualbox
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-bhtfk
+    secret:
+      defaultMode: 420
+      secretName: default-token-bhtfk
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2021-04-29T11:48:53Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2021-04-29T11:49:44Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2021-04-29T11:49:44Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2021-04-29T11:48:53Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://91799783ddd4a6bf6e4bf79328e953d4eed138ebdc738f5fa42ee13d70ce20b6
+    image: localhost:5000/covid19-system:latest
+    imageID: localhost:5000/covid19-system@sha256:52cf617c755d73f89fa110588e488d4f6e00b1ba21d7af0821c8a692ab658947
+    lastState: {}
+    name: covid19-system
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2021-04-29T11:49:43Z"
+  hostIP: 10.0.2.15
+  phase: Running
+  podIP: 10.1.153.210
+  podIPs:
+  - ip: 10.1.153.210
+  qosClass: BestEffort
+  startTime: "2021-04-29T11:48:53Z"
