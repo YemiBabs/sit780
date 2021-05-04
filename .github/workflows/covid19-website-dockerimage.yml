@@ -13,6 +13,5 @@ jobs:
     - name: Build the Docker image
       run:  docker build -t ${{ secrets.DOCKER_USERNAME }}/covid19-efficacy-system .
     - name: Publish to Docker Hub
-      run:  docker push ${{ secrets.DOCKER_USERNAME }}/covid19-efficacy-system 
-      needs: build 
+      run:  docker push ${{ secrets.DOCKER_USERNAME }}/covid19-efficacy-system
         
