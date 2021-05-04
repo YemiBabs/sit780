@@ -1,0 +1,21 @@
+name: Covid19-Website Docker Image CI
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Login to DockerHub
+      run:  echo ${{ secrets.DOCKER_PASSWORD }} | docker login 
+      -u ${ secrets.DOCKER_USER }} --password-stdin
+    - name: Build the Docker image
+      run:  docker build -t ${{ secrets.DOCKER_USERNAME }}/
+      covid19-efficacy-system .
+    - name: Publish to Docker Hub
+      run:  docker push ${{ secrets.DOCKER_USERNAME }}/
+      covid19-efficacy-system 
+      needs: build 
+        
