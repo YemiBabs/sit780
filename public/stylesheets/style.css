@@ -109,7 +109,7 @@ ol li
   height: 50px;}
 
 #banner1
-{  background: transparent url(banner.png) no-repeat;
+{  background: transparent url(banner.jpeg) no-repeat;
   width: 860px;
   height: 180px;
   margin-bottom: 20px;
@@ -382,3 +382,5 @@ table tr td
 .pbody {
   padding: 1px 5px;
 }
+
+

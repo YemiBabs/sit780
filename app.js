@@ -5,9 +5,62 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var nodemailer = require('nodemailer');
 
+var app = express();
+app.use(express.static('public'));
 
+
+const expressSession = require('express-session')({
+   secret: 'secret',
+   resave: false,
+   saveUninitialized: false
+});
+
+app.use(express.json());
+app.use(express.urlencoded());
+
+app.use(expressSession); 
+
+/* Passport setup */ 
+const passport = require('passport');
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+/* Mongoose setup */
+const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
+
+mongoose.connect('mongodb://localhost/MyDatabase', { useNewUrlParser: true, useUnifiedTopology: true });
+
+const Schema = mongoose.Schema;
+const UserDetail = new Schema( {
+   username: String,
+   password: String
+});
+
+UserDetail.plugin(passportLocalMongoose);
+const UserDetails = mongoose.model('userInfo', UserDetail, 'userInfo');
+
+
+
+
+/* PASSPORT Local Authentication */
+
+passport.use(UserDetails.createStrategy());
+
+passport.serializeUser(UserDetails.serializeUser());
+passport.deserializeUser(UserDetails.deserializeUser());
+
+
+
+
+
+
+/* non secure page routing begins */
 
 var indexRouter = require('./routes/index');
+var loginRouter = require('./routes/login');
+//var searchRouter = require('./routes/search');
 var donateRouter = require('./routes/donation');
 var successRouter = require('./routes/success');
 var canceledRouter = require('./routes/canceled');
@@ -19,8 +72,6 @@ var facts = require('covid-facts');
 var allFacts = facts.all;
 var randomFact = facts.random();
 
-var app = express();
-app.use(express.static('public'));
 
 
 // view engine setup
@@ -37,12 +88,82 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/index.html', indexRouter);
+app.use('/login.html', loginRouter);
+//app.use('/search.html', searchRouter);
 app.use('/donation.html', donateRouter);
 app.use('/success.html', successRouter);
 app.use('/canceled.html', canceledRouter);
 app.use('/email.html', sendemailRouter);
 
 //app.use('/users', usersRouter);
+
+
+
+/* Secure routing begins */
+const connectEnsureLogin = require('connect-ensure-login');
+  
+  
+  
+/* user login - POST action  */
+
+app.post('/login', (req, res, next) => {
+  passport.authenticate('local',
+  (err, user, info) => {
+      if (err) {
+        return next(err);
+      }
+
+      if (!user) {
+         return res.redirect('login?info=' + info);
+      }
+
+      req.login(user, function(err) {
+         if (err) {
+           return next(err);
+    }
+
+      return res.redirect('/');
+  });
+
+  }) (req, res, next);
+});
+
+
+
+/* get pages   
+
+app.get('/login',
+  (req, res) => res.sendFile('/login.html', { root: __dirname})
+  );
+
+
+  app.get('/',
+  connectEnsureLogin.ensureLoggedIn(),
+  (req, res) => res.sendFile('/index.html', { root: __dirname})
+  );  
+
+*/
+
+
+ /* route for secure search should be here  */
+
+
+  app.get('/search',
+  connectEnsureLogin.ensureLoggedIn(),
+  (req, res) => res.redirect('/search.html', { root: __dirname})
+  );  
+
+
+  app.get('/user',
+  connectEnsureLogin.ensureLoggedIn(),
+  (req, res) => res.send( { user: req.user })
+  );  
+
+
+/* secure route ends */
+
+
+
 
 //api-exposed
 app.get('/Covid_All_facts_API', (req,res) => {
@@ -111,6 +232,11 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+/* Register some users 
+UserDetails.register({username: 'paul', active: false}, 'paul');
+UserDetails.register({username: 'tester', active: false}, 'tester');
+UserDetails.register({username: 'Dan', active: false}, 'Dan');
+*/
 
 
 module.exports = app;
