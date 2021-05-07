@@ -116,7 +116,7 @@ app.post('/login', (req, res, next) => {
       }
 
       if (!user) {
-         return res.redirect('login?info=' + info);
+         return res.redirect('login.html?info=' + info);
       }
 
       req.login(user, function(err) {
@@ -146,7 +146,7 @@ app.get('/login',
   ); 
 
   app.get('/logout',function(req, res){
-      req.logOut;
+      req.logOut();
       res.redirect('/');
   });
 
