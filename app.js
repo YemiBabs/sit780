@@ -9,6 +9,7 @@ var app = express();
 app.use(express.static('public'));
 
 
+
 const expressSession = require('express-session')({
    secret: 'secret',
    resave: false,
@@ -16,7 +17,7 @@ const expressSession = require('express-session')({
 });
 
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(expressSession); 
 
@@ -30,7 +31,9 @@ app.use(passport.session());
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 
-mongoose.connect('mongodb://localhost/MyDatabase', { useNewUrlParser: true, useUnifiedTopology: true });
+
+//mongoose.connect('mongodb://localhost/MyDatabase', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://dbuser:dbuser123@cluster0.rktte.mongodb.net/SIT780Database?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const Schema = mongoose.Schema;
 const UserDetail = new Schema( {
@@ -89,7 +92,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/index.html', indexRouter);
 app.use('/login.html', loginRouter);
-//app.use('/search.html', searchRouter);
 app.use('/donation.html', donateRouter);
 app.use('/success.html', successRouter);
 app.use('/canceled.html', canceledRouter);
@@ -100,7 +102,7 @@ app.use('/email.html', sendemailRouter);
 
 
 /* Secure routing begins */
-const connectEnsureLogin = require('connect-ensure-login');
+var connectEnsureLogin = require('connect-ensure-login');
   
   
   
@@ -119,10 +121,10 @@ app.post('/login', (req, res, next) => {
 
       req.login(user, function(err) {
          if (err) {
+           console.log(err);
            return next(err);
     }
-
-      return res.redirect('/');
+        return res.redirect('/sindex');
   });
 
   }) (req, res, next);
@@ -135,14 +137,19 @@ app.post('/login', (req, res, next) => {
 app.get('/login',
   (req, res) => res.sendFile('/login.html', { root: __dirname})
   );
-
-
-  app.get('/',
-  connectEnsureLogin.ensureLoggedIn(),
-  (req, res) => res.sendFile('/index.html', { root: __dirname})
-  );  
-
 */
+
+  app.get('/sindex', 
+       connectEnsureLogin.ensureLoggedIn(), 
+       (req, res) => res.sendFile('/views/secureIndex.html', { root: __dirname})
+      
+  ); 
+
+  app.get('/logout',function(req, res){
+      req.logOut;
+      res.redirect('/');
+  });
+
 
 
  /* route for secure search should be here  */
@@ -150,7 +157,7 @@ app.get('/login',
 
   app.get('/search',
   connectEnsureLogin.ensureLoggedIn(),
-  (req, res) => res.redirect('/search.html', { root: __dirname})
+  (req, res) => res.sendFile('views/search.html', { root: __dirname})
   );  
 
 
@@ -191,7 +198,7 @@ var transporter = nodemailer.createTransport({
 });
 
 app.get('/',function(req,res){
-  res.sendfile('email.html');
+  res.sendFile('email.html');
 })
 
 app.get('/send',function(req,res){

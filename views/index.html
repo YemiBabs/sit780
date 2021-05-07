@@ -11,114 +11,121 @@
 
 <body>
     <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-    <df-messenger
-      intent="WELCOME"
-      chat-title="COVID19-Efficacy System"
-      agent-id="aaef6f04-4e27-472c-ae52-a13e53d7d9e8"
-      language-code="en" 
-      
-    ></df-messenger>
-<div id="main">
-    <div id="header">
-        <div id="logo">
-            <div id="logo_text">
-                <!-- class="logo_colour", allows you to change the colour of the text -->
-                <h1><a href="index.html">COVID-19 Efficacy System</a></h1>
+    <df-messenger intent="WELCOME" chat-title="COVID19-Efficacy System" agent-id="aaef6f04-4e27-472c-ae52-a13e53d7d9e8"
+        language-code="en"></df-messenger>
+    <div id="main">
+        <div id="header">
+            <div id="logo">
+                <div id="logo_text">
+                    <!-- class="logo_colour", allows you to change the colour of the text -->
+                    <h1><a href="index.html">COVID-19 Efficacy System</a></h1>
+                </div>
+            </div>
+            <div id="menubar">
+                <ul id="menu">
+                    <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+                    <li class="selected"><a href="login.html">Login</a></li>
+                    <li><a href="donation.html" target="popup"
+                            onclick="window.open('donation.html','popup','width=600,height=620'); return false;">Donate</a>
+                    </li>
+                    <li><a href="email.html">Send email</a></li>
+                </ul>
             </div>
         </div>
-        <div id="menubar">
-            <ul id="menu">
-                <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-                <li class="selected"><a href="login.html">Login</a></li>
-                <li><a href="donation.html" target="popup"  onclick="window.open('donation.html','popup','width=600,height=620'); return false;">Donate</a></li>
-                   <li><a href="email.html">Send email</a></li>
-            </ul>
+        <div id="content_header"></div>
+        <div id="site_content">
+            <div id="banner1"></div>
+            <div id="sidebar_container">
+                <div class="sidebar">
+                    <div class="sidebar_top"></div>
+                    <div class="sidebar_item">
+                        <!-- insert your sidebar items here -->
+                        <h3>Latest News</h3>
+                        <h4>New Website Launched</h4>
+                        <h5>Corona Virus</h5>
+                        <p>2020 . Take a look around and let us know what you think.<br /><a href="#">Read more</a></p>
+                    </div>
+                    <div class="sidebar_base"></div>
+                </div>
+                <div class="sidebar">
+                    <div class="sidebar_top"></div>
+                    <h4>Would you like to support?</h4>
+                    <a href="donation.html" target="popup"
+                        onclick="window.open('donation.html','popup','width=600,height=620'); return false;">Donate</a>
+                    <div>
+                    </div>
+                    <div class="sidebar_item">
+                        <br />
+                        <br />
+
+                    </div>
+                    <div class="sidebar_base"></div>
+                </div>
+                <div class="sidebar">
+                    <div class="sidebar_top"></div>
+                    <div class="sidebar_item">
+                        <h3>Search</h3>
+                        <form method="post" action="#" id="search_form">
+                            <p>
+                                <input class="search" type="text" name="search_field" value="Enter keywords....." />
+                                <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;"
+                                    src="/image/search.png" alt="Search" title="Search" />
+                            </p>
+                        </form>
+                    </div>
+                    <div class="sidebar_base"></div>
+                </div>
+            </div>
+            <div id="content">
+                <!-- insert the page content here -->
+                <div class="message box">
+                    <h1>Welcome to COVID-19 Efficacy System</h1>
+                </div>
+
+
+
+                <p>
+
+
+                </p>
+                <p>COVID-19 was first confirmed in Australia in late January 2020.</p>
+
+
+
+
+                <script id="infogram_0__/cOIPtIcy7fYKhSjH58xZ" title="Number of confirmed cases each day"
+                    src="https://e.infogram.com/js/dist/embed.js?hc8" type="text/javascript">
+                    </script>
+
+                <script id="infogram_0_de47e150-8f22-43b8-bb95-d91e433a2918"
+                    title="COVID-19 diagnoses in Australian states and territories over time"
+                    src="https://e.infogram.com/js/dist/embed.js?qlJ" type="text/javascript"></script>
+
+
+            </div>
+        </div>
+        <div id="content_footer"></div>
+        <div id="footer">
+            <p><a href="index.html">Home</a> | <a href="donation.html" target="popup"
+                    onclick="window.open('donation.html','popup','width=600,height=620'); return false;">Donate</a> | <a
+                    href="email.html">Send email</a></p>
+
         </div>
     </div>
-    <div id="content_header"></div>
-    <div id="site_content">
-        <div id="banner1"></div>
-        <div id="sidebar_container">
-            <div class="sidebar">
-                <div class="sidebar_top"></div>
-                <div class="sidebar_item">
-                    <!-- insert your sidebar items here -->
-                    <h3>Latest News</h3>
-                    <h4>New Website Launched</h4>
-                    <h5>Corona Virus</h5>
-                    <p>2020 . Take a look around and let us know what you think.<br /><a href="#">Read more</a></p>
-                </div>
-                <div class="sidebar_base"></div>
-            </div>
-            <div class="sidebar">
-                <div class="sidebar_top"></div>
-                <h4>Would you like to support?</h4>
-                <a href="donation.html"  target="popup" onclick="window.open('donation.html','popup','width=600,height=620'); return false;">Donate</a>
-                <div>
-                </div>
-                <div class="sidebar_item">
-                    <br/>
-                    <br/>
 
-                </div>
-                <div class="sidebar_base"></div>
-            </div>
-            <div class="sidebar">
-                <div class="sidebar_top"></div>
-                <div class="sidebar_item">
-                    <h3>Search</h3>
-                    <form method="post" action="#" id="search_form">
-                        <p>
-                            <input class="search" type="text" name="search_field" value="Enter keywords....." />
-                            <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="/image/search.png" alt="Search" title="Search" />
-                        </p>
-                    </form>
-                </div>
-                <div class="sidebar_base"></div>
-            </div>
-        </div>
-        <div id="content">
-            <!-- insert the page content here -->
-            <div class="message box">
-                <h1 id="welcome-mesage"></h1>
-              <a href="search"> Search for an COVIDsafe Address </a>
-           </div>
-
-           <script> 
-                const req = new XMLHttpRequest();
-                req.onreadystatechange = function () {
-                    if (req.readyState == 4 && req.status == 200) {
-                        const user = JSON.parse(req.response).user;
-                        document.getElementById("welcome-message").innerText = `Welcome to the COVID-19 Efficacy Tracker, ${user.username}!!';
-                    }
-                };
-                req.open("GET", "http://localhost:3007/user", true);
-                req.send();
-           </script> 
-
-            <p>
-
-
-            </p>
-            <p>COVID-19 was first confirmed in Australia in late January 2020.</p>
-
-            
-       
-
-            <script id="infogram_0__/cOIPtIcy7fYKhSjH58xZ" title="Number of confirmed cases each day" src="https://e.infogram.com/js/dist/embed.js?hc8" type="text/javascript">
-            </script>
-
-            <script id="infogram_0_de47e150-8f22-43b8-bb95-d91e433a2918" title="COVID-19 diagnoses in Australian states and territories over time" src="https://e.infogram.com/js/dist/embed.js?qlJ" type="text/javascript"></script>
-                 
-
-        </div>
-    </div>
-    <div id="content_footer"></div>
-    <div id="footer">
-        <p><a href="index.html">Home</a> | <a href="donation.html"  target="popup" onclick="window.open('donation.html','popup','width=600,height=620'); return false;">Donate</a> | <a href="email.html">Send email</a></p>
-
-    </div>
-</div>
-
+ 
 </body>
-</html>
+</html> 
+  <script>
+        const req = new XMLHttpRequest();
+        req.open("GET", "http://localhost:3000/user", true);
+        req.send();
+           req.onreadystatechange = function () {
+               if (req.readyState == 4 && req.status == 200) {
+                   const user = JSON.parse(req.response).user;
+                   document.getElementById("welcome-message").innerText = `Welcome to the COVID-19 Efficacy Tracker, ${user.username}!!';
+                }
+            };
+
+        
+    </script>

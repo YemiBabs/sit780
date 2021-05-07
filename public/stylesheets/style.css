@@ -115,6 +115,13 @@ ol li
   margin-bottom: 20px;
   border: 10px solid #DDD;}
 
+#comingsoon
+{  background: transparent url(/image/coming-soon-page.jpeg) no-repeat;
+  width: 560px;
+  height: 550px;
+  margin-bottom: 20px;
+  border: 0px solid #DDD;}
+
 #logo
 { width: 880px;
   position: relative;
